@@ -1,0 +1,158 @@
+/* Genel Ayarlar ve Arka Plan */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    
+    /* Yumuşak, Romantik Gradyan Arka Plan (Örnek: Güneş Batımı Efekti) */
+    background: linear-gradient(to top right, #ffafbd 0%, #ffc3a0 100%); 
+    background-attachment: fixed; 
+    
+    font-family: 'Montserrat', sans-serif; /* Modern yazı tipi */
+    flex-direction: column;
+    text-align: center;
+    overflow: hidden; /* Sayfa kenarında scroll çıkmasını engeller */
+}
+
+/* Ana İçerik Kutusu */
+.container {
+    background-color: #ffffff;
+    padding: 60px 80px; /* Daha fazla dolgu */
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Belirgin gölge */
+    position: relative; /* Hayır butonunun hareket etmesi için ZORUNLU! */
+    z-index: 1; 
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Başlık */
+h1 {
+    color: #ff69b4; /* Sıcak pembe */
+    font-size: 2.5em; 
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+/* Butonları Saran Kutu */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Butonlar arası boşluk */
+    margin-top: 30px;
+}
+
+/* Tüm Butonlar Genel Stili */
+button {
+    padding: 15px 35px; /* Büyük butonlar */
+    border: none;
+    border-radius: 50px; /* Yuvarlak kenarlar */
+    font-size: 1.2em;
+    cursor: pointer;
+    font-weight: 700;
+    min-width: 120px; 
+    transition: all 0.2s ease; /* Hover efekti için yumuşak geçiş */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* EVET Butonu Stili */
+#yesBtn {
+    background-color: #00b894; /* Zümrüt yeşili */
+    color: white;
+}
+
+#yesBtn:hover {
+    background-color: #00a082;
+    transform: scale(1.05); /* Üzerine gelince biraz büyür */
+}
+
+/* HAYIR Butonu Stili - KRİTİK HAREKET AYARLARI */
+#noBtn {
+    background-color: #ff4757; /* Parlak kırmızı */
+    color: white;
+    position: absolute; /* Butonun serbestçe hareket etmesini sağlar. */
+    z-index: 10;
+    transform: translate(0, 0); /* JavaScript ile burası değişecek */
+    transition: transform 0.1s linear; /* Hareket daha akıcı olur */
+}
+
+/* Cevap Mesajı (EVET'e basıldığında görünür) */
+#answerMessage {
+    margin-top: 20px;
+    font-size: 1.8em;
+    color: #ff69b4;
+    font-weight: 800;
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}/* Arka Plan Kalpleri Stili */
+.hearts-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0; /* İçerik kutusunun arkasında kalması için */
+    pointer-events: none; /* Kalplerin tıklanmasını engeller */
+}
+
+.heart {
+    position: absolute;
+    background-color: rgba(255, 105, 180, 0.5); /* Yarı şeffaf pembe kalp */
+    width: 20px;
+    height: 20px;
+    transform: rotate(-45deg); /* Kalp şekli için */
+    animation: heart-fall linear infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(255, 105, 180, 0.5);
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: 10px;
+}
+
+/* Kalplerin Düşme Animasyonu */
+@keyframes heart-fall {
+    0% {
+        transform: translateY(-10vh) rotate(-45deg) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(0vh) rotate(-45deg) scale(1);
+    }
+    100% {
+        transform: translateY(110vh) rotate(-45deg) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Her kalbe farklı bir gecikme ve başlangıç pozisyonu verelim */
+.heart:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 8s; }
+.heart:nth-child(2) { left: 20%; animation-delay: 1s; animation-duration: 10s; background-color: rgba(255,192,203,0.5); }
+.heart:nth-child(3) { left: 30%; animation-delay: 0.5s; animation-duration: 7s; }
+.heart:nth-child(4) { left: 40%; animation-delay: 2s; animation-duration: 9s; background-color: rgba(255,223,230,0.5); }
+.heart:nth-child(5) { left: 50%; animation-delay: 1.5s; animation-duration: 6s; }
+.heart:nth-child(6) { left: 60%; animation-delay: 2.5s; animation-duration: 11s; background-color: rgba(255,192,203,0.5); }
+.heart:nth-child(7) { left: 70%; animation-delay: 3s; animation-duration: 8s; }
+.heart:nth-child(8) { left: 80%; animation-delay: 0s; animation-duration: 9s; background-color: rgba(255,223,230,0.5); }
+.heart:nth-child(9) { left: 90%; animation-delay: 1s; animation-duration: 7s; }
+.heart:nth-child(10) { left: 5%; animation-delay: 3.5s; animation-duration: 10s; }
